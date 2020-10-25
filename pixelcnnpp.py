@@ -9,7 +9,7 @@ tfk = tf.keras
 tfkl = tf.keras.layers
 
 tf.compat.v1.enable_v2_behavior()
-config = tf.compat.v1.ConfigProto()
+config = tf.compat.v1.ConfigProto(log_device_placement=True)
 sess = tf.compat.v1.Session(config=config)
 
 # Load MNIST from tensorflow_datasets
