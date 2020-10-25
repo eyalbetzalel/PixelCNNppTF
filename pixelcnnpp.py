@@ -49,7 +49,7 @@ model.compile(
     optimizer=tfk.optimizers.Adam(.001),
     metrics=[])
 
-model.fit(train_it, epochs=10, verbose=True)
+model.fit(train_it, epochs=3, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
