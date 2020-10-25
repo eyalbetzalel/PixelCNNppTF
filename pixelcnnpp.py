@@ -8,7 +8,9 @@ tfd = tfp.distributions
 tfk = tf.keras
 tfkl = tf.keras.layers
 
-tf.enable_v2_behavior()
+tf.compat.v1.enable_v2_behavior()
+config = tf.ConfigProto()
+sess = tf.Session(config=config)
 
 # Load MNIST from tensorflow_datasets
 data = tfds.load('mnist')
