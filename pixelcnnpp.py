@@ -8,6 +8,11 @@ tfd = tfp.distributions
 tfk = tf.keras
 tfkl = tf.keras.layers
 
+print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+
+import ipdb
+ipdb.set_trace()
+
 tf.compat.v1.enable_v2_behavior()
 config = tf.compat.v1.ConfigProto(log_device_placement=True)
 sess = tf.compat.v1.Session(config=config)
@@ -55,5 +60,4 @@ model.fit(train_it, epochs=3, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
-import ipdb
-ipdb.set_trace()
+
