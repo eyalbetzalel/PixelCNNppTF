@@ -55,3 +55,5 @@ model.fit(train_it, epochs=3, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
+import ipdb
+ipdb.set_trace()
