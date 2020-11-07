@@ -87,7 +87,7 @@ model.fit(train_it, epochs=1, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
-imsave(samples)
+#imsave(samples)
 
 import ipdb
 ipdb.set_trace()
