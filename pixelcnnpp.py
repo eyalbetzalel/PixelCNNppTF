@@ -33,15 +33,14 @@ def imsave(batch_or_tensor, title=None, figsize=None, filename="sample.png"):
     figsize: The size (in inches) for the image. Passed to Matplotlib.
   """
   batch = batch_or_tensor
-  for _ in range(batch.ndim):
-    batch = batch.unsqueeze(0)
-  n, c, h, w = batch.shape
-  tensor = batch.permute(1, 2, 0, 3).reshape(c, h, -1)
+  for i in range(batch.shape[0]):
+    image = tf.squeeze(batch[i], 2)
+    filename = "sample_" + str(i) + ".png"
+    plt.figure()
+    plt.imsave(filename,image)
 
-  plt.figure(figsize=figsize)
-  plt.title(title)
-  plt.axis('off')
-  plt.imsave(filename,image)
+
+  
  
 ##################################
   
@@ -87,7 +86,7 @@ model.fit(train_it, epochs=1, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
-#imsave(samples)
+imsave(samples)
 
 import ipdb
 ipdb.set_trace()
