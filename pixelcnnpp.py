@@ -4,6 +4,9 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import tensorflow_probability as tfp
 
+import matplotlib.pyplot as plt
+
+
 tfd = tfp.distributions
 tfk = tf.keras
 tfkl = tf.keras.layers
@@ -17,6 +20,31 @@ config = tf.compat.v1.ConfigProto(log_device_placement=True)
 sess = tf.compat.v1.Session(config=config)
 tf.debugging.set_log_device_placement(True)
 
+
+######### Sample ##############
+
+def imsave(batch_or_tensor, title=None, figsize=None, filename="sample.png"):
+  """Renders tensors as an image using Matplotlib.
+  Args:
+    batch_or_tensor: A batch or single tensor to render as images. If the batch
+      size > 1, the tensors are flattened into a horizontal strip before being
+      rendered.
+    title: The title for the rendered image. Passed to Matplotlib.
+    figsize: The size (in inches) for the image. Passed to Matplotlib.
+  """
+  batch = batch_or_tensor
+  for _ in range(batch.ndim):
+    batch = batch.unsqueeze(0)
+  n, c, h, w = batch.shape
+  tensor = batch.permute(1, 2, 0, 3).reshape(c, h, -1)
+
+  plt.figure(figsize=figsize)
+  plt.title(title)
+  plt.axis('off')
+  plt.imsave(filename,image)
+ 
+##################################
+  
 
 # Load MNIST from tensorflow_datasets
 data = tfds.load('mnist')
@@ -59,6 +87,7 @@ model.fit(train_it, epochs=1, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)
+imsave(samples)
 
 import ipdb
 ipdb.set_trace()
